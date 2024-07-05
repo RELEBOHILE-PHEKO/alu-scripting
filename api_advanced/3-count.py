@@ -1,4 +1,3 @@
-
 #!/usr/bin/python3
 """"Module for counting words in the titles of hot posts on a subreddit."""
 import requests
