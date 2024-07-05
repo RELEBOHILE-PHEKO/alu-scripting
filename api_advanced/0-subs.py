@@ -6,13 +6,15 @@ import requests
 
 
 def number_of_subscribers(subreddit):
-    """Queries the Reddit API and returns the number of subscribers for a given subreddit"""
+    """
+    Queries the Reddit API and returns the number of subscribers for a given subreddit.
+    """
     if subreddit is None or not isinstance(subreddit, str):
         return 0
 
     url = f"https://www.reddit.com/r/{subreddit}/about.json"
     headers = {
-        "User-Agent": "api-advanced/project"
+        'User-Agent': 'api-advanced/project'
     }
 
     try:
