@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 """ a recursive function that queries the Reddit API """
+
 import requests
 
 
 def recurse(subreddit, hot_list=[], after=None):
     """ returns list with titles """
+
     URL = 'https://www.reddit.com/r/{}/hot.json'.format(subreddit)
     my_headers = {
-        "User-Agent": "api-advanced/project"
+        'User-Agent': 'API-Advanced'
         }
     params = {'after': after}
     response = requests.get(URL, headers=my_headers,
