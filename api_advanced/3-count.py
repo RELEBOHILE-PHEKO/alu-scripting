@@ -1,14 +1,26 @@
 #!/usr/bin/python3
-"""Reddit API word counting module"""
+"""
+Reddit API word counting module.
+This module provides functionality to count occurrences of specified words
+in the titles of hot posts from a given subreddit using the Reddit API.
+"""
 
 import requests
 
 
 def count_words(subreddit, word_list, after=None, word_count=None):
     """
-    Count occurrences of words from word_list in hot posts of a subreddit
-    """
+    Count occurrences of words from word_list in hot posts of a subreddit.
 
+    Args:
+        subreddit (str): Subreddit to search.
+        word_list (list): List of words to count.
+        after (str, optional): Pagination token for subsequent API requests.
+        word_count (dict, optional): Running count of words.
+
+    Returns:
+        None: Prints word counts in descending order.
+    """
     if word_count is None:
         word_count = {}
 
@@ -27,8 +39,8 @@ def count_words(subreddit, word_list, after=None, word_count=None):
         for post in posts:
             title_words = post['data']['title'].lower().split()
             for word in word_list:
-                word = word.lower()
-                word_count[word] = word_count.get(word, 0) + title_words.count(word)
+                word_lower = word.lower()
+                word_count[word_lower] = word_count.get(word_lower, 0) + title_words.count(word_lower)
 
         after = data['data']['after']
         if after:
@@ -38,5 +50,5 @@ def count_words(subreddit, word_list, after=None, word_count=None):
             for word, count in sorted_counts:
                 if count > 0:
                     print(f"{word}: {count}")
-    except Exception:
+    except requests.RequestException:
         return
