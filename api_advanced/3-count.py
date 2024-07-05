@@ -1,6 +1,6 @@
 
 #!/usr/bin/python3
-""""3-count.py"""
+""""Module for counting words in the titles of hot posts on a subreddit."""
 import requests
 
 
