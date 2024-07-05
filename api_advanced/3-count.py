@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-"""Reddit API word counting module."""
+"""Reddit API word counting module"""
 
 import requests
 
 
 def count_words(subreddit, word_list, after=None, word_count=None):
-    """Count occurrences of words from word_list in hot posts of a subreddit"""
+    """
+    Count occurrences of words from word_list in hot posts of a subreddit
+    """
 
     if word_count is None:
         word_count = {}

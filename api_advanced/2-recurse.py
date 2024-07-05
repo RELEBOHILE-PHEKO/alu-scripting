@@ -19,12 +19,9 @@ def recurse(subreddit, hot_list=[], after=None):
         for child in data['children']:
             title = child['data']['title']
             hot_list.append(title)
-        # get next page of results
-        try:
-            after = data['after']
+        after = data.get('after')
+        if after:
             return recurse(subreddit, hot_list, after)
-        except KeyError as e:
-            print('Key Error', str(e))
-            pass
+        return hot_list
     else:
         return None
