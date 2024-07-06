@@ -7,7 +7,7 @@ def top_ten(subreddit):
     """"top ten"""
     URL = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
     my_headers = {
-        "User-Agent": "api-advanced/project"
+        "User-Agent": "API-Advanced"
         }
 
     response = requests.get(URL, headers=my_headers)
