@@ -30,3 +30,8 @@ def number_of_subscribers(subreddit):
         return 0
 
     return subs
+a", {}).get("subscribers", 0)
+    except ValueError:
+        return 0
+
+    return subs
