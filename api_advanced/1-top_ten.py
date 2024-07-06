@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """Top Ten Posts from Reddit"""
-
 import requests
 
+
 def top_ten(subreddit):
-    """Fetches and prints titles of the first 10 hot posts from a subreddit."""
-    URL = f"https://www.reddit.com/r/{subreddit}/hot.json?limit=10"
+    """first 10 hot posts from a subreddit."""
+    URL = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
     my_headers = {
         "User-Agent": "API-Advanced"
     }
