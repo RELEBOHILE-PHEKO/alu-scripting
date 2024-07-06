@@ -1,36 +1,21 @@
 #!/usr/bin/python3
-"""Contains top_ten function"""
+""""Contains top_ten function"""
 import requests
-import json
 
-def fetch_subreddit_data(subreddit):
-    """Fetch data from a given subreddit"""
-    url = "https://www.reddit.com/r/{}/hot/.json".format(subreddit)
-    headers = {
-        "User-Agent": "Your Unique User Agent Identifier"
-    }
-    params = {
-        "limit": 10
-    }
-    try:
-        response = requests.get(url, headers=headers, params=params, allow_redirects=False)
-        response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
-        return response.json()
-    except requests.RequestException as e:
-        print("Error fetching data:", e)
-        return None
-
-def print_top_ten_titles(data):
-    """Print the titles of the top 10 hottest posts"""
-    if data is None:
-        print("None")
-        return
-    results = data.get("data")
-    if results:
-        for child in results.get("children"):
-            print(child.get("data").get("title"))
 
 def top_ten(subreddit):
-    """Print the titles of the 10 hottest posts on a given subreddit"""
-    data = fetch_subreddit_data(subreddit)
-    print_top_ten_titles(data)
+    """"Print the titles of the 10 hottest posts on a given subreddit."""
+    URL = "https://www.reddit.com/r/{}/hot.json?limit=10".format(subreddit)
+    my_headers = {
+        "User-Agent": "API-Advanced"
+        }
+
+    response = requests.get(URL, headers=my_headers)
+    # raw_response = response.json()['data']['children']
+
+    if response.status_code != 200:
+        print(None)
+    else:
+        json_response = response.json()
+        posts = json_response['data']['children']
+        [print(post.get('data').get('title')) for post in posts]
